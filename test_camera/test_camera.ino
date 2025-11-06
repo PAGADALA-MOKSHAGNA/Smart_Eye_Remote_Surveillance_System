@@ -34,8 +34,8 @@
 #include <WebServer.h>
 
 // ======== WiFi credentials - EDIT THESE =========
-const char* WIFI_SSID = "Pixel 7";
-const char* WIFI_PASS = "qwertyuiop1";
+const char* WIFI_SSID = "Janardhana Rao";
+const char* WIFI_PASS = "Madhavi#888";
 // ================================================
 
 WebServer server(80);

@@ -4,7 +4,7 @@ import time
 import requests
 from datetime import datetime
 
-ESP_IP = "10.223.247.45"    # <-- change to the IP printed by your ESP32 serial monitor
+ESP_IP = "192.168.31.228"    # <-- change to the IP printed by your ESP32 serial monitor
 URL = f"http://{ESP_IP}/capture"
 SAVE_DIR = r"D:\Smart Eye Images"  # change to desired folder on your laptop
 INTERVAL_SEC = 3  # download every N seconds
