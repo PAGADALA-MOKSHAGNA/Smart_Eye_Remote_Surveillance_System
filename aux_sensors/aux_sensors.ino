@@ -5,8 +5,8 @@
 #include <LiquidCrystal_I2C.h>
 
 // ---------- WiFi ----------
-const char *WIFI_SSID = "Janardhana Rao";
-const char *WIFI_PASS = "Madhavi#888";
+const char *WIFI_SSID = "Pixel";
+const char *WIFI_PASS = "123456789";
 WebServer server(80);
 
 // ---------- Pins ----------
@@ -282,23 +282,56 @@ void loop()
   lcd.print("D:");
   lcd.print(distance);
   lcd.print("cm ");
-  lcd.print(irObjectDetected ? "IR!" : "  ");
+  lcd.print(irObjectDetected ? "!!!_IR_!!!" : " No_IR ");
   lcd.setCursor(0, 1);
-  lcd.print(pirTrig ? "PIR!" : "    ");
-  lcd.print(panActive ? " PAN" : "    ");
+  lcd.print(pirTrig ? "PIR!" : "Normal   ");
+  lcd.print(panActive ? " PAN" : "Rest.");
 
   // Decision
   bool closeObject = (distance >= 0 && distance < distanceThresholdCm);
-  if (pirTrig || irObjectDetected || closeObject)
-  {
-    Serial.println("[EVT] Anomaly Detected!");
+  // if (pirTrig || irObjectDetected || closeObject)
+  // {
+  //   Serial.println("[EVT] Anomaly Detected!");
+  //   beep(150);
+  //   startPanSequence();
+  //   lcd.clear();
+  //   lcd.setCursor(0, 0);
+  //   lcd.print("Anomaly!");
+  //   lcd.setCursor(0, 1);
+  //   lcd.print("Scanning Area...");
+  //   delay(400);
+  // }
+  if(pirTrig){
+    Serial.println("[EVT] Anomaly Detected! - Motion Detected");
     beep(150);
     startPanSequence();
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Anomaly!");
     lcd.setCursor(0, 1);
-    lcd.print("Scanning Area...");
+    lcd.print("Motion Detected!!!");
+    delay(400);
+  }
+  else if(irObjectDetected) {
+    Serial.println("[EVT] Anomaly Detected! - Moving Setup");
+    beep(150);
+    startPanSequence();
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Anomaly!");
+    lcd.setCursor(0, 1);
+    lcd.print("Moving Setup!!!");
+    delay(400);
+  }
+  else if(closeObject){
+    Serial.println("[EVT] Anomaly Detected! - Approaching");
+    beep(150);
+    startPanSequence();
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Anomaly!");
+    lcd.setCursor(0, 1);
+    lcd.print("Approaching!!!");
     delay(400);
   }
 
